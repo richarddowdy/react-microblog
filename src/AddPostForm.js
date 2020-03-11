@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import {add_post} from './actions';
+import {v4 as uuid} from 'uuid';
 
 function AddPostForm() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -11,7 +14,13 @@ function AddPostForm() {
   });
 
   const handleSubmit = evt => {
-
+    evt.preventDefault();
+    formData.id = uuid();
+    dispatch(add_post(formData));
+    history.push({
+      pathname: `/posts/${formData.id}`, 
+      state: {success: true}
+    });
   }
 
   const handleChange = evt => {

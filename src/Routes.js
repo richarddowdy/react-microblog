@@ -2,6 +2,8 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import AddPostForm from './AddPostForm';
+import Post from './Post';
+import NotFound from './NotFound';
 
 function Routes() {
 
@@ -10,15 +12,15 @@ function Routes() {
       <Route exact path="/">
         <Home />
       </Route>
-      {/* <Route exact path="/products/:id">
-        <ProductDetail />
-      </Route> */}
+      <Route exact path="/posts/:id">
+        <Post />
+      </Route>
       <Route exact path="/new">
         <AddPostForm />
       </Route>
-      {/* <Route>
+      <Route>
         <NotFound />
-      </Route> */}
+      </Route>
     </Switch>
   )
 
