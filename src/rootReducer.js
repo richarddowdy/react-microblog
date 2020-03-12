@@ -36,6 +36,7 @@ function rootReducer(state = INITIAL_STATE, action) {
       };
       const oldPosts = state.posts.filter(p => p.id !== action.payload.id);
 
+      console.log("adddddd", action.payload)
       console.log("WTFFFFFFF", post);
       return { ...state, posts: [ ...oldPosts, updatedPost ] }
 
@@ -52,8 +53,8 @@ function rootReducer(state = INITIAL_STATE, action) {
       };
       const thisOldPosts = state.posts.filter(p => p.id !== action.payload);
       console.log("UPdated posts", thisUpdatedPost);
-      return { ...state, posts: ([ ...thisOldPosts, thisUpdatedPost ]) }
-      
+      return { ...state, posts: [ ...thisOldPosts, thisUpdatedPost ] }
+      //this is causing the new post to be added in to the posts array
 
     default:
       console.warn('No type found', action.type);

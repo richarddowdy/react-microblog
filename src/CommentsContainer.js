@@ -12,9 +12,10 @@ function CommentsContainer({ post }){
   const handleDelete = ( commentId ) => {
     let payload = {id, commentId};
     dispatch(delete_comment(payload));
-    
   }
-  console.log(comments);
+
+
+  console.log("comment container",comments);
   return(
     <div className="CommentsContainer">
       <h3>Comments</h3>
