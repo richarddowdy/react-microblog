@@ -1,4 +1,4 @@
-import {REMOVE_POST, ADD_POST} from './actionTypes';
+import {REMOVE_POST, ADD_POST, ADD_COMMENT, DELETE_COMMENT} from './actionTypes';
 
 export function add_post(val) {
   return {
@@ -11,5 +11,19 @@ export function remove_post(val) {
   return {
     type: REMOVE_POST,
     payload: val
+  }
+}
+
+export function add_comment(val) {
+  return {
+    type: ADD_COMMENT,
+    payload:val
+  }
+}
+
+export function delete_comment(val) {
+  return {
+    type: DELETE_COMMENT,
+    payload:val
   }
 }

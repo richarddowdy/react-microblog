@@ -10,7 +10,8 @@ function AddPostForm() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    body: ""
+    body: "",
+    comments: []
   });
 
   const handleSubmit = evt => {
