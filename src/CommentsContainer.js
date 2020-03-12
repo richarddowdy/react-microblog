@@ -15,12 +15,16 @@ function CommentsContainer({ post }){
   }
 
 
-  console.log("comment container",comments);
+  // console.log("comment container",comments);
   return(
     <div className="CommentsContainer">
       <h3>Comments</h3>
       <div>
-        {comments ? comments.map(comment => <p><button onClick={() =>handleDelete(comment.id)}>X</button>{comment.text}</p>) : null }
+        {comments.length ? 
+          comments.map(comment =>
+            <p>
+                <button onClick={() =>handleDelete(comment.commentId)}>X</button>{comment.text}
+            </p>) : null }
         <h4>Add a Comment</h4>
       </div>
       <CommentsForm postId={id} />

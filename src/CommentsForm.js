@@ -4,7 +4,6 @@ import {add_comment} from './actions';
 import {v4 as uuid} from 'uuid';
 
 function CommentsForm({postId}) {
-  console.log("in post itself", postId)
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
@@ -13,9 +12,7 @@ function CommentsForm({postId}) {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    formData.id = postId;
-    formData.commentId = uuid();
-    dispatch(add_comment(formData));
+    dispatch(add_comment({...formData, id: postId, commentId: uuid()}));
     setFormData({text: ""})
   }
 
