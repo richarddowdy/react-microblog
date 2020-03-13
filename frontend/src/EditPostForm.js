@@ -1,35 +1,27 @@
 import React, { useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {edit_post} from './actions';
+import { updateSinglePostApi } from './actionCreators';
 
 function EditPostForm() {
 
   const dispatch = useDispatch();
-
   const {id} = useParams();
-
-  console.log(id);
-
-  // const currentPost = useSelector(store => {
-  //   return store.posts.find(post => post.id === id);
-  // })
-
-  const currentPost = useSelector(store => store.posts.find(post => post.id === +id));
-
-  console.log("current post in edit form", currentPost);
-
+  const currentPost = useSelector(store => store.post);
   const history = useHistory();
 
   const [formData, setFormData] = useState({
+    id: currentPost.id,
     title: currentPost.title,
     description: currentPost.description,
-    body: currentPost.body
+    body: currentPost.body,
+    votes: currentPost.votes,
+    comments: currentPost.comments
   });
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    dispatch(edit_post({...formData}));
+    dispatch(updateSinglePostApi(id, {...formData}));
     history.push({
       pathname: `/posts/${id}`, 
       state: {success: true}

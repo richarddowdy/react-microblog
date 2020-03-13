@@ -1,7 +1,8 @@
-import { ADD_POST, REMOVE_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_POSTS, LOAD_POST} from './actionTypes';
+import { ADD_POST, REMOVE_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_POSTS, LOAD_POST, EDIT_POST} from './actionTypes';
+import { updateSinglePostApi } from './actionCreators';
 
 const INITIAL_STATE = {
-  posts: [{title:'test', description:'test des', body: 'test body', comments: [], id:'1'}]
+  posts: []
 }
 
 function handleRemove(arr, id) {
@@ -19,8 +20,9 @@ function handleRemove(arr, id) {
 function rootReducer(state = INITIAL_STATE, action) {
 
   switch(action.type) {
+
     case ADD_POST:
-      return {...state, posts: [...state.posts, action.payload]};
+      return {...state, posts: [...state.posts, action.post]};
   
 
     case REMOVE_POST:
@@ -29,7 +31,6 @@ function rootReducer(state = INITIAL_STATE, action) {
 
     case ADD_COMMENT:
       const post = state.posts.find(p => p.id === action.payload.id);
-      console.log('POST ID:', post.id, 'DATA TYPE:', typeof post.id)
       const updatedPost = { 
         ...post, 
         comments: [ ...post.comments, action.payload ]
@@ -57,6 +58,12 @@ function rootReducer(state = INITIAL_STATE, action) {
 
     case LOAD_POST:
       return {...state, post: action.post}
+
+      
+    case EDIT_POST:
+   
+      return {...state, post: {...state.post, title: action.post.title, description: action.post.description, body: action.post.body}}
+    
 
     default:
       console.warn('No type found', action.type);

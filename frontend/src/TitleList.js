@@ -13,14 +13,13 @@ function TitleList() {
   
   const posts = useSelector(store => store.posts);
 
-  // console.log("in list", posts);
-
-
-
   return (
     <div className="TitleList">
       {posts? 
-      posts.map(post => <PostCard post={post} key={post.id} />) : null }
+      posts.map(post => {
+        {console.log(post.id)}
+        return <PostCard post={post} key={post.id} />
+        }) : null }
     </div>
   )
 }

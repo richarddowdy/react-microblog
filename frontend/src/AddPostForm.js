@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {add_post} from './actions';
-import {v4 as uuid} from 'uuid';
+import { useDispatch } from 'react-redux';
+import { addPostApi } from './actionCreators';
 
 function AddPostForm() {
   const dispatch = useDispatch();
   const history = useHistory();
-  // const selector = useSelector();
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -17,15 +15,13 @@ function AddPostForm() {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    const postId = uuid();
-    dispatch(add_post({...formData, id: postId}));
-    // let thisPostId = selector(store => store.posts);
-    // WHY CAN'T WE USE the useSelector HOOK DIRECTLY IN THIS handleSubmit FUNCTION??
+    dispatch(addPostApi({...formData}));
     history.push({
-      pathname: `/posts/${postId}`, 
+      pathname: `/`, 
       state: {success: true}
     });
   }
+
 
   const handleChange = evt => {
     const { name, value } = evt.target;
