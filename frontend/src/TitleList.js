@@ -17,7 +17,7 @@ function TitleList() {
     <div className="TitleList row d-flex justify-content-around">
       {posts? 
       posts.map(post => {
-        {console.log(post.id)}
+        console.log(post.id)
         return <PostCard post={post} key={post.id} />
         }) : null }
     </div>
