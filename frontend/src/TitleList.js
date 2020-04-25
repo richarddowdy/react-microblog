@@ -14,7 +14,7 @@ function TitleList() {
   const posts = useSelector(store => store.posts);
 
   return (
-    <div className="TitleList">
+    <div className="TitleList row d-flex justify-content-around">
       {posts? 
       posts.map(post => {
         {console.log(post.id)}

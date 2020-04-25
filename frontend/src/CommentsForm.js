@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {add_comment} from './actions';
 import {v4 as uuid} from 'uuid';
+import { addCommentToApi } from './actionCreators';
 
 function CommentsForm({postId}) {
   const dispatch = useDispatch();
@@ -12,7 +13,8 @@ function CommentsForm({postId}) {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    dispatch(add_comment({...formData, id: postId, commentId: uuid()}));
+    console.log('fired')
+    dispatch(addCommentToApi({...formData, postId, commentId: uuid()}));
     setFormData({text: ""})
   }
 
@@ -28,7 +30,7 @@ function CommentsForm({postId}) {
     <div className="AddPostForm">
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <input className="form-control" value={formData.text} type="text" id="text" name="text" onChange={handleChange} />
+          <input className="form-control col-6 m-auto" value={formData.text} type="text" id="text" name="text" onChange={handleChange} />
         </div>
         <input type="submit" value="Submit" className="btn btn-primary" />
       </form>

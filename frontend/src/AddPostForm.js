@@ -32,19 +32,19 @@ function AddPostForm() {
   }
 
   return (
-    <div className="AddPostForm">
-      <form onSubmit={handleSubmit}>
+    <div className="AddPostForm row">
+      <form onSubmit={handleSubmit} className="col-12">
         <div className="form-group">
           <label htmlFor="title">Title</label><br />
-          <input className="form-control" type="text" id="title" name="title" onChange={handleChange} />
+          <input className="form-control col-9 m-auto" type="text" id="title" name="title" onChange={handleChange} />
         </div>
         <div className="form-group">
           <label htmlFor="description">Description</label><br />
-          <input className="form-control" type="text" id="description" name="description" onChange={handleChange} />
+          <input className="form-control col-9 m-auto" type="text" id="description" name="description" onChange={handleChange} />
         </div>
         <div className="form-group">
           <label htmlFor="body">Body</label><br />
-          <textarea className="form-control" type="textarea" id="body" name="body" onChange={handleChange} />
+          <textarea className="form-control col-9 m-auto" type="textarea" id="body" name="body" onChange={handleChange} />
         </div>
         <input type="submit" value="Submit" className="btn btn-primary" />
         &nbsp;

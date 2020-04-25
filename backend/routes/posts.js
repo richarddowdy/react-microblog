@@ -62,7 +62,6 @@ router.get("/:id", async function (req, res, next) {
       FROM posts p 
         LEFT JOIN comments c ON c.post_id = p.id
       WHERE p.id = $1
-      
       GROUP BY p.id    
       ORDER BY p.id
       `, [req.params.id]

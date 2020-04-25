@@ -1,5 +1,4 @@
 import { ADD_POST, REMOVE_POST, ADD_COMMENT, DELETE_COMMENT, LOAD_POSTS, LOAD_POST, EDIT_POST} from './actionTypes';
-import { updateSinglePostApi } from './actionCreators';
 
 const INITIAL_STATE = {
   posts: []
@@ -30,19 +29,20 @@ function rootReducer(state = INITIAL_STATE, action) {
 
 
     case ADD_COMMENT:
-      const post = state.posts.find(p => p.id === action.payload.id);
+      const post = state.post
       const updatedPost = { 
         ...post, 
-        comments: [ ...post.comments, action.payload ]
+        comments: [ ...post.comments, action.comment ]
       };
-      const oldPosts = state.posts.filter(p => p.id !== action.payload.id);
-
-      return { ...state, posts: [ ...oldPosts, updatedPost ] }
-
+      const oldPosts = state.posts.filter(p => p.id !== action.comment.post_id);
+      let updatedState = { ...state, posts: [ ...oldPosts, updatedPost ], post: updatedPost }
+      return updatedState
 
     case DELETE_COMMENT:
-      const thisPost = state.posts.find(p => p.id === action.payload.id);
-      const comments = thisPost.comments.filter(c => c.commentId !== action.payload.commentId);
+      console.log(action);
+      const thisPost = state.posts.find(p => p.id === action.postId);
+      console.log(thisPost);
+      const comments = thisPost.comments.filter(c => c.commentId !== action.commentId);
 
       const thisUpdatedPost = { 
         ...thisPost, 
